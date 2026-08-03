@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Change Calculator</title>
+
+    <style>
+        body{
+            font-family: Arial;
+            background:#f0f8ff;
+            text-align:center;
+        }
+
+        .box{
+            width:500px;
+            margin:50px auto;
+            background:white;
+            padding:20px;
+            border-radius:10px;
+            box-shadow:0 0 10px gray;
+        }
+
+        input{
+            width:220px;
+            padding:8px;
+            font-size:18px;
+        }
+
+        button{
+            padding:8px 20px;
+            font-size:18px;
+            cursor:pointer;
+        }
+
+        #result{
+            margin-top:20px;
+            text-align:left;
+            font-size:20px;
+            line-height:35px;
+        }
+
+        h1, h2, h3{
+            color:black;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>Change Calculator</h2>
+
+<h3>
+Name : Tun Thet Paing <br>
+Student ID : 250702403697
+</h3>
+
+Enter Amount :
+<input type="number" id="money" min="1" step="1" required>
+
+<button onclick="calculate()">Submit</button>
+<button type="button" onclick="goBack()">Back</button>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+
+function goBack(){
+    if (window.history.length > 1) {
+        window.history.back();
+    } else {
+        document.getElementById('result').textContent = 'No previous page found in browser history.';
+    }
+}
+
+function calculate(){
+
+    let amount = parseInt(document.getElementById("money").value, 10);
+
+    if (isNaN(amount) || !Number.isInteger(amount) || amount < 1) {
+        document.getElementById("result").innerHTML = "Please enter a valid amount greater than 0.";
+        return;
+    }
+
+    let result = "";
+
+    let note1000 = Math.floor(amount/1000);
+    amount = amount % 1000;
+
+    let note500 = Math.floor(amount/500);
+    amount = amount % 500;
+
+    let note100 = Math.floor(amount/100);
+    amount = amount % 100;
+
+    let note50 = Math.floor(amount/50);
+    amount = amount % 50;
+
+    let note20 = Math.floor(amount/20);
+    amount = amount % 20;
+
+    let note10 = Math.floor(amount/10);
+    amount = amount % 10;
+
+    let coin5 = Math.floor(amount/5);
+    amount = amount % 5;
+
+    let coin2 = Math.floor(amount/2);
+    amount = amount % 2;
+
+    let coin1 = amount;
+
+    if(note1000>0)
+        result += note1000 + " of 1000<br>";
+
+    if(note500>0)
+        result += note500 + " of 500<br>";
+
+    if(note100>0)
+        result += note100 + " of 100<br>";
+
+    if(note50>0)
+        result += note50 + " of 50<br>";
+
+    if(note20>0)
+        result += note20 + " of 20<br>";
+
+    if(note10>0)
+        result += note10 + " of 10<br>";
+
+    if(coin5>0)
+        result += coin5 + " of 5<br>";
+
+    if(coin2>0)
+        result += coin2 + " of 2<br>";
+
+    if(coin1>0)
+        result += coin1 + " of 1<br>";
+
+    document.getElementById("result").innerHTML = result;
+
+}
+
+</script>
+
+</body>
+</html>

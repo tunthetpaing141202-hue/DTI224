@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Grade Calculator</title>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background:#f2f2f2;
+        }
+
+        .container{
+            width:500px;
+            margin:auto;
+            margin-top:50px;
+            background:white;
+            padding:20px;
+            border-radius:10px;
+            box-shadow:0 0 10px gray;
+        }
+
+        h1,h2{
+            text-align:center;
+        }
+
+        input{
+            width:200px;
+            padding:8px;
+        }
+
+        button{
+            padding:8px 15px;
+            margin-top:10px;
+            margin-right:10px;
+        }
+
+        p{
+            font-size:20px;
+            color:blue;
+            font-weight:bold;
+        }
+
+        .error{
+            color:red;
+            font-size:14px;
+            margin-top:8px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Grade Calculator</h1>
+
+<h2>Tun Thet Paing</h2>
+
+<h3>Student ID : 250702403697</h3>
+
+<hr>
+
+<label>Enter Score (0 - 100):</label><br><br>
+
+<input type="number" id="score" min="0" max="100" step="1" required>
+
+<div class="error" id="error"></div>
+
+<button onclick="calculateGrade()">Calculate</button>
+<button onclick="location.href='index.html'">Back</button>
+
+<p id="result"></p>
+
+</div>
+
+<script>
+
+function validateScore(value) {
+    const trimmedValue = value.trim();
+
+    if (trimmedValue === "") {
+        return "Please enter a score.";
+    }
+
+    const score = Number(trimmedValue);
+
+    if (Number.isNaN(score)) {
+        return "Please enter a valid number.";
+    }
+
+    if (!Number.isInteger(score)) {
+        return "Please enter a whole number.";
+    }
+
+    if (score < 0 || score > 100) {
+        return "Score must be between 0 and 100.";
+    }
+
+    return "";
+}
+
+function calculateGrade(){
+
+    const scoreInput = document.getElementById("score");
+    const score = scoreInput.value;
+    const errorElement = document.getElementById("error");
+    const resultElement = document.getElementById("result");
+    const validationMessage = validateScore(score);
+
+    if (validationMessage) {
+        errorElement.textContent = validationMessage;
+        resultElement.textContent = "";
+        return;
+    }
+
+    errorElement.textContent = "";
+
+    const numericScore = Number(score);
+    let grade = "";
+
+    if (numericScore >= 80) {
+        grade = "A";
+    } else if (numericScore >= 60) {
+        grade = "B";
+    } else if (numericScore >= 40) {
+        grade = "C";
+    } else if (numericScore >= 20) {
+        grade = "D";
+    } else {
+        grade = "E";
+    }
+
+    resultElement.textContent = "Your Grade is : " + grade;
+}
+
+</script>
+
+</body>
+</html>

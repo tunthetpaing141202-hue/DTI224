@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Measurement Converter</title>
+
+    <style>
+
+        body{
+            font-family: Arial, sans-serif;
+            background-color:#f2f2f2;
+        }
+
+        .container{
+            width:650px;
+            margin:auto;
+            background:white;
+            padding:20px;
+            margin-top:30px;
+            border-radius:10px;
+            box-shadow:0px 0px 10px gray;
+        }
+
+        h1,h2,h3{
+            text-align:center;
+        }
+
+        input{
+            width:180px;
+            padding:8px;
+        }
+
+        button{
+            padding:8px 15px;
+            cursor:pointer;
+        }
+
+        hr{
+            margin-top:20px;
+            margin-bottom:20px;
+        }
+
+        p{
+            color:blue;
+            font-weight:bold;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Measurement Converter</h1>
+
+<button onclick="goBack()">Back</button>
+
+<p id="backResult"></p>
+
+<h2>Tun Thet Paing</h2>
+
+<h3>Student ID : 250702403697
+</h3>
+
+<hr>
+
+<h2>Length Converter</h2>
+
+<label>Enter Meter :</label>
+
+<input type="number" id="meter">
+
+<button onclick="lengthConvert()">Convert</button>
+
+<p id="lengthResult"></p>
+
+<hr>
+
+<h2>Height Converter</h2>
+
+<label>Enter Centimeter :</label>
+
+<input type="number" id="height">
+
+<button onclick="heightConvert()">Convert</button>
+
+<p id="heightResult"></p>
+
+<hr>
+
+<h2>Temperature Converter</h2>
+
+<label>Enter Celsius :</label>
+
+<input type="number" id="temp">
+
+<button onclick="tempConvert()">Convert</button>
+
+<p id="tempResult"></p>
+
+<hr>
+
+<h2>Area Converter</h2>
+
+<label>Enter Square Meter :</label>
+
+<input type="number" id="area">
+
+<button onclick="areaConvert()">Convert</button>
+
+<p id="areaResult"></p>
+
+</div>
+
+<script>
+
+function goBack(){
+    if (window.history.length > 1) {
+        document.getElementById("backResult").innerHTML="Going back to previous page";
+        window.history.back();
+    } else {
+        document.getElementById("backResult").innerHTML="No previous page available";
+    }
+}
+
+function lengthConvert(){
+
+    let meter=parseFloat(document.getElementById("meter").value);
+
+    if (isNaN(meter)) {
+        document.getElementById("lengthResult").innerHTML="Please enter a valid value.";
+        return;
+    }
+
+    let cm=meter*100;
+
+    document.getElementById("lengthResult").innerHTML=
+    "Equal to "+cm+" Centimeters";
+
+}
+
+function heightConvert(){
+
+    let cm=parseFloat(document.getElementById("height").value);
+
+    if (isNaN(cm)) {
+        document.getElementById("heightResult").innerHTML="Please enter a valid value.";
+        return;
+    }
+
+    let meter=cm/100;
+
+    document.getElementById("heightResult").innerHTML=
+    "Equal to "+meter.toFixed(2)+" Meters";
+
+}
+
+function tempConvert(){
+
+    let c=parseFloat(document.getElementById("temp").value);
+
+    if (isNaN(c)) {
+        document.getElementById("tempResult").innerHTML="Please enter a valid value.";
+        return;
+    }
+
+    let f=(c*9/5)+32;
+
+    document.getElementById("tempResult").innerHTML=
+    "Equal to "+f.toFixed(2)+" Fahrenheit";
+
+}
+
+function areaConvert(){
+
+    let sqm=parseFloat(document.getElementById("area").value);
+
+    if (isNaN(sqm)) {
+        document.getElementById("areaResult").innerHTML="Please enter a valid value.";
+        return;
+    }
+
+    let sqft=sqm*10.764;
+
+    document.getElementById("areaResult").innerHTML=
+    "Equal to "+sqft.toFixed(2)+" Square Feet";
+
+}
+
+</script>
+
+</body>
+
+</html>

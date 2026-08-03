@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Distance Calculator</title>
+
+    <style>
+
+        body{
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        .container{
+            width: 500px;
+            margin: auto;
+            margin-top: 50px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px gray;
+            text-align: center;
+        }
+
+        h1,h2,h3{
+            color: black;
+        }
+
+        input{
+            width: 200px;
+            padding: 8px;
+            font-size: 16px;
+        }
+
+        button{
+            padding: 8px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        #result{
+            color: blue;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .error{
+            color: red;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Distance Calculator</h1>
+
+    <h2>Name : Tun Thet Paing</h2>
+
+    <h3>Student ID : 250702403697</h3>
+
+    <hr>
+
+    <label>Enter X Coordinate :</label>
+
+    <br><br>
+
+    <input type="number" id="x" step="any" placeholder="Enter X">
+
+    <br><br>
+
+    <label>Enter Y Coordinate :</label>
+
+    <br><br>
+
+    <input type="number" id="y" step="any" placeholder="Enter Y">
+
+    <br><br>
+
+    <button type="button" onclick="calculateDistance()">Calculate</button>
+
+    <p id="validation" class="error"></p>
+    <p id="result"></p>
+
+    <hr>
+
+    <button type="button" onclick="goBack()">Back</button>
+
+</div>
+
+<script>
+
+function calculateDistance(){
+
+    let xInput = document.getElementById("x");
+    let yInput = document.getElementById("y");
+    let x = xInput.value.trim();
+    let y = yInput.value.trim();
+    let result = document.getElementById("result");
+    let validation = document.getElementById("validation");
+
+    result.innerHTML = "";
+    validation.innerHTML = "";
+
+    if(x === "" || y === ""){
+        validation.innerHTML = "Please enter both X and Y values.";
+        if(x === "") xInput.focus();
+        else yInput.focus();
+        return;
+    }
+
+    let xNumber = Number(x);
+    let yNumber = Number(y);
+
+    if(Number.isNaN(xNumber) || Number.isNaN(yNumber) || !Number.isFinite(xNumber) || !Number.isFinite(yNumber)){
+        validation.innerHTML = "Please enter valid numeric values for X and Y.";
+        if(Number.isNaN(xNumber) || !Number.isFinite(xNumber)) xInput.focus();
+        else yInput.focus();
+        return;
+    }
+
+    let distance = Math.sqrt((xNumber * xNumber) + (yNumber * yNumber));
+
+    result.innerHTML = "Distance = " + distance.toFixed(2);
+
+}
+
+function goBack(){
+    history.back();
+}
+
+</script>
+
+</body>
+
+</html>
